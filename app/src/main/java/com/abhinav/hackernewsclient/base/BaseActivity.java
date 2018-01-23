@@ -61,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
                 .commit();
     }
 
-    abstract int getResourceId();
+    protected abstract int getResourceId();
 
 
     /**

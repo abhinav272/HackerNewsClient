@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HackerNewsClient</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="no_network_error">Internet Unavailable</string>
+</resources>

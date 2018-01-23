@@ -70,7 +70,7 @@ abstract class BaseModel<T extends BaseModelListener> implements Observer<T> {
             failureResponse.setErrorCode(((HttpException) e).code());
             failureResponse.setMsg(((HttpException) e).message());
         }
-        getListener().onErrorOccured(failureResponse);
+        getListener().onErrorOccurred(failureResponse);
     }
 
     private void noNetworkAvailableError() {

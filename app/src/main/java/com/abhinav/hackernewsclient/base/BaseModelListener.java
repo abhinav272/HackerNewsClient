@@ -1,10 +1,12 @@
 package com.abhinav.hackernewsclient.base;
 
+import com.abhinav.hackernewsclient.network.FailureResponse;
+
 /**
  * Created by appinventiv on 23/1/18.
  */
 
 interface BaseModelListener {
     void noNetworkError();
-    void onErrorOccured();
+    void onErrorOccurred(FailureResponse failureResponse);
 }

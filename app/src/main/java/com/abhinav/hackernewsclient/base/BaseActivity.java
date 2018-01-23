@@ -11,7 +11,8 @@ import android.widget.Toast;
 import com.abhinav.hackernewsclient.R;
 import com.abhinav.hackernewsclient.network.FailureResponse;
 
-import butterknife.Bind;
+import butterknife.BindInt;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
-    @Bind(R.id.base_container)
+    @BindView(R.id.base_container)
     RelativeLayout baseContainer;
 
     @Override

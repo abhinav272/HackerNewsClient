@@ -15,29 +15,29 @@ import retrofit2.http.Path;
  */
 
 public interface APIHackerNews {
-    String ENDPOINT = "https://hacker-news.firebaseio.com/v0/";
+    String ENDPOINT = "https://hacker-news.firebaseio.com";
 
     /**
      * API to fetch top stories
      */
-    @GET("/topstories.json")
+    @GET("/v0/topstories.json")
     Observable<List<Long>> getTopStories();
 
     /**
-     * API to fetch user profile
+     * API to fetch USER profile
      */
-    @GET("/user/{user}.json")
+    @GET("/v0/user/{user}.json")
     Observable<User> getUser(@Path("user") String user);
 
     /**
      * API to fetch item details for STORY
      */
-    @GET("/item/{itemId}.json")
+    @GET("/v0/item/{itemId}.json")
     Observable<Story> getStoryItem(@Path("itemId") String itemId);
 
     /**
-     * API to fetch item details for Comment
+     * API to fetch item details for COMMENT
      */
-    @GET("/item/{itemId}.json")
+    @GET("/v0/item/{itemId}.json")
     Observable<Comment> getCommentItem(@Path("itemId") String itemId);
 }

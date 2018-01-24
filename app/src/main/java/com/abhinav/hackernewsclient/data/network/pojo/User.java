@@ -1,8 +1,9 @@
-package com.abhinav.hackernewsclient.network.pojo;
+package com.abhinav.hackernewsclient.data.network.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class User {
     private String about;
     @SerializedName("created")
     @Expose
-    private Long created;
+    private Date created;
     @SerializedName("id")
     @Expose
     private String id;
@@ -34,11 +35,11 @@ public class User {
         this.about = about;
     }
 
-    public Long getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Long created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

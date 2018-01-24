@@ -1,8 +1,9 @@
-package com.abhinav.hackernewsclient.network.pojo;
+package com.abhinav.hackernewsclient.data.network.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class Story {
     private Long score;
     @SerializedName("time")
     @Expose
-    private Long time;
+    private Date time;
     @SerializedName("title")
     @Expose
     private String title;
@@ -103,11 +104,11 @@ public class Story {
         this.score = score;
     }
 
-    public Long getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Long time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

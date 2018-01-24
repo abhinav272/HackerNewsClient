@@ -11,8 +11,6 @@ import android.widget.Toast;
 import com.abhinav.hackernewsclient.R;
 import com.abhinav.hackernewsclient.network.FailureResponse;
 
-import butterknife.BindInt;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -20,15 +18,16 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
-    @BindView(R.id.base_container)
+
     RelativeLayout baseContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
-        ButterKnife.bind(this);
+        baseContainer = findViewById(R.id.base_container);
         setLayout();
+        ButterKnife.bind(this);
     }
 
     private void setLayout() {
@@ -69,7 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
      * A common place to handle no network error
      * Can show a full screen View, Snackbar with retry action
      * or a simple Toast
-     * */
+     */
 
     @Override
     public void showNoNetworkError() {

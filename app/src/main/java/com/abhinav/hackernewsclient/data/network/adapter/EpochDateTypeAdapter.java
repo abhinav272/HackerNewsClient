@@ -1,4 +1,4 @@
-package com.abhinav.hackernewsclient.network.adapter;
+package com.abhinav.hackernewsclient.data.network.adapter;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

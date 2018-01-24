@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.abhinav.hackernewsclient.base.BaseActivity;
-import com.abhinav.hackernewsclient.network.RestController;
+import com.abhinav.hackernewsclient.data.DataManager;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn)
     public void onViewClicked() {
-        RestController.getInstance().getTopStories()
+        DataManager.getInstance().fetchTopStories()
                 .subscribe(new Observer<List<Long>>() {
                     @Override
                     public void onSubscribe(Disposable d) {

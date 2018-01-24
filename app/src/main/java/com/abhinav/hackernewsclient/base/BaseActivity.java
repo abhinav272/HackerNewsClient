@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.abhinav.hackernewsclient.R;
-import com.abhinav.hackernewsclient.network.FailureResponse;
+import com.abhinav.hackernewsclient.data.network.FailureResponse;
 
 import butterknife.ButterKnife;
 

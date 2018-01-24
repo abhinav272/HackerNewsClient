@@ -1,6 +1,10 @@
-package com.abhinav.hackernewsclient.network;
+package com.abhinav.hackernewsclient.data;
 
-import com.abhinav.hackernewsclient.network.adapter.EpochDateTypeAdapter;
+import com.abhinav.hackernewsclient.data.network.APIHackerNews;
+import com.abhinav.hackernewsclient.data.network.adapter.EpochDateTypeAdapter;
+import com.abhinav.hackernewsclient.data.network.pojo.Comment;
+import com.abhinav.hackernewsclient.data.network.pojo.Story;
+import com.abhinav.hackernewsclient.data.network.pojo.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by appinventiv on 23/1/18.
  */
 
-public class RestController {
+class RestController {
 
     private static final RestController ourInstance = new RestController();
     private APIHackerNews apiHackerNews;
@@ -48,8 +52,23 @@ public class RestController {
         return GsonConverterFactory.create(gson);
     }
 
-    public Observable<List<Long>> getTopStories(){
+    Observable<List<Long>> getTopStories(){
          return apiHackerNews.getTopStories()
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<User> getUserDetails(String userId) {
+        return apiHackerNews.getUser(userId)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<Comment> getCommentDeatils(String commentId){
+        return apiHackerNews.getCommentItem(commentId)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<Story> getStoryDetails(String storyId){
+        return apiHackerNews.getStoryItem(storyId)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

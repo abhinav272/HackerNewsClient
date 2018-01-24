@@ -1,4 +1,4 @@
-package com.abhinav.hackernewsclient.network;
+package com.abhinav.hackernewsclient.data.network;
 
 /**
  * Created by appinventiv on 23/1/18.

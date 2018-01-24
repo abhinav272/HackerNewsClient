@@ -1,8 +1,8 @@
-package com.abhinav.hackernewsclient.network;
+package com.abhinav.hackernewsclient.data.network;
 
-import com.abhinav.hackernewsclient.network.pojo.Comment;
-import com.abhinav.hackernewsclient.network.pojo.Story;
-import com.abhinav.hackernewsclient.network.pojo.User;
+import com.abhinav.hackernewsclient.data.network.pojo.Comment;
+import com.abhinav.hackernewsclient.data.network.pojo.Story;
+import com.abhinav.hackernewsclient.data.network.pojo.User;
 
 import java.util.List;
 

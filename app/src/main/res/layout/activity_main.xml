@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.abhinav.hackernewsclient.MainActivity">
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="TESTING"
-        android:typeface="serif" />
-
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"

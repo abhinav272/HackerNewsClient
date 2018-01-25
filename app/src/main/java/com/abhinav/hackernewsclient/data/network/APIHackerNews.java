@@ -33,11 +33,11 @@ public interface APIHackerNews {
      * API to fetch item details for STORY
      */
     @GET("/v0/item/{itemId}.json")
-    Observable<Story> getStoryItem(@Path("itemId") String itemId);
+    Observable<Story> getStoryItem(@Path("itemId") Long itemId);
 
     /**
      * API to fetch item details for COMMENT
      */
     @GET("/v0/item/{itemId}.json")
-    Observable<Comment> getCommentItem(@Path("itemId") String itemId);
+    Observable<Comment> getCommentItem(@Path("itemId") Long itemId);
 }

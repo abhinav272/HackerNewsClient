@@ -6,7 +6,7 @@ import com.abhinav.hackernewsclient.data.network.FailureResponse;
  * Created by appinventiv on 23/1/18.
  */
 
-interface BaseModelListener {
+public interface BaseModelListener {
     void noNetworkError();
     void onErrorOccurred(FailureResponse failureResponse);
 }

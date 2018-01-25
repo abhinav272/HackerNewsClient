@@ -1,6 +1,9 @@
 package com.abhinav.hackernewsclient.base;
 
+import android.util.Log;
 import android.widget.Toast;
+
+import com.abhinav.hackernewsclient.data.network.FailureResponse;
 
 import java.lang.ref.SoftReference;
 
@@ -45,5 +48,17 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
     @Override
     public void noNetworkError() {
 
+    }
+
+    /**
+     * Common place to log errors to Analytics or custom file logging
+     * Every Presenter can override this method to provide custom handling if required
+     * */
+
+    @Override
+    public void onErrorOccurred(FailureResponse failureResponse) {
+        if (failureResponse != null) {
+            Log.e("OnErrorOccured", failureResponse.getErrorCode() + failureResponse.getMsg());
+        }
     }
 }

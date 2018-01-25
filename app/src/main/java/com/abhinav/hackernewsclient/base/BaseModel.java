@@ -15,16 +15,16 @@ import retrofit2.HttpException;
  * Created by appinventiv on 23/1/18.
  */
 
-abstract class BaseModel<T extends BaseModelListener> implements Observer<T> {
+public abstract class BaseModel<T> implements Observer<T> {
 
-    private SoftReference<T> listener;
+    private SoftReference<BaseModelListener> listener;
     private CompositeDisposable disposable;
 
-    public BaseModel(T listener) {
+    public BaseModel(BaseModelListener listener) {
         attachListener(listener);
     }
 
-    public void attachListener(T listener) {
+    public void attachListener(BaseModelListener listener) {
         this.listener = new SoftReference<>(listener);
         disposable = new CompositeDisposable();
     }
@@ -34,7 +34,7 @@ abstract class BaseModel<T extends BaseModelListener> implements Observer<T> {
         flushDisposable();
     }
 
-    public T getListener() {
+    public BaseModelListener getListener() {
         return (listener != null) ? listener.get() : null;
     }
 

@@ -2,29 +2,16 @@ package com.abhinav.hackernewsclient;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.widget.Button;
 
 import com.abhinav.hackernewsclient.base.BaseActivity;
-import com.abhinav.hackernewsclient.data.DataManager;
-
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import com.abhinav.hackernewsclient.ui.news.TopStoriesFragment;
 
 public class MainActivity extends BaseActivity {
-
-
-    @BindView(R.id.btn)
-    Button btn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        addFragment(R.id.frame_container, new BaseFragment(), BaseFragment.class.getSimpleName());
+        addFragment(R.id.frame_container, new TopStoriesFragment(), TopStoriesFragment.class.getSimpleName());
     }
 
     @Override
@@ -32,7 +19,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick(R.id.btn)
+    /*@OnClick(R.id.btn)
     public void onViewClicked() {
         DataManager.getInstance().fetchTopStories()
                 .subscribe(new Observer<List<Long>>() {
@@ -56,5 +43,5 @@ public class MainActivity extends BaseActivity {
                         Log.e("onComplete: ", "yo complete");
                     }
                 });
-    }
+    }*/
 }

@@ -27,15 +27,15 @@ class RestController {
     private static final RestController ourInstance = new RestController();
     private APIHackerNews apiHackerNews;
 
-    public static RestController getInstance() {
-        return ourInstance;
-    }
-
     private RestController() {
         apiHackerNews = getRetrofitService();
     }
 
-    private static APIHackerNews getRetrofitService(){
+    public static RestController getInstance() {
+        return ourInstance;
+    }
+
+    private static APIHackerNews getRetrofitService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
                 .addConverterFactory(getGsonFactory())
@@ -52,8 +52,8 @@ class RestController {
         return GsonConverterFactory.create(gson);
     }
 
-    Observable<List<Long>> getTopStories(){
-         return apiHackerNews.getTopStories()
+    Observable<List<Long>> getTopStories() {
+        return apiHackerNews.getTopStories()
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
@@ -62,12 +62,12 @@ class RestController {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Comment> getCommentDeatils(String commentId){
+    public Observable<Comment> getCommentDeatils(Long commentId) {
         return apiHackerNews.getCommentItem(commentId)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Story> getStoryDetails(String storyId){
+    public Observable<Story> getStoryDetails(Long storyId) {
         return apiHackerNews.getStoryItem(storyId)
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -5,12 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.abhinav.hackernewsclient.R;
 import com.abhinav.hackernewsclient.base.BaseFragment;
+import com.abhinav.hackernewsclient.data.network.pojo.Story;
+import com.abhinav.hackernewsclient.ui.adapter.TopStoriesAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +23,7 @@ import butterknife.Unbinder;
  * Created by appinventiv on 24/1/18.
  */
 
-public class TopStoriesFragment extends BaseFragment implements TopStoriesView {
+public class TopStoriesFragment extends BaseFragment implements TopStoriesView, TopStoriesAdapter.DelegateClick {
 
     @BindView(R.id.rv_top_stories)
     RecyclerView rvTopStories;
@@ -28,6 +31,7 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView {
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
     private TopStoriesPresenter presenter;
+    private TopStoriesAdapter topStoriesAdapter;
 
     @Nullable
     @Override
@@ -45,6 +49,7 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                topStoriesAdapter.removeAllStories();
                 fetchTopStories();
             }
         });
@@ -52,7 +57,9 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView {
     }
 
     private void setupRV() {
+        topStoriesAdapter = new TopStoriesAdapter(null, this);
         rvTopStories.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvTopStories.setAdapter(topStoriesAdapter);
 
     }
 
@@ -65,11 +72,18 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView {
 
     @Override
     public void fetchTopStories() {
+        swipeRefreshLayout.setRefreshing(true);
         presenter.initView();
     }
 
     @Override
-    public void populateTopStories() {
+    public void addStoryToView(Story story) {
         swipeRefreshLayout.setRefreshing(false);
+        topStoriesAdapter.addStoryItem(story);
+    }
+
+    @Override
+    public void onStorySelected(Story story) {
+        Log.e("onStorySelected: ", story.getTitle());
     }
 }

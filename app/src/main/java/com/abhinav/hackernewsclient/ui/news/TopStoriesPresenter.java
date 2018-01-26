@@ -43,6 +43,6 @@ public class TopStoriesPresenter extends BasePresenter<TopStoriesView> implement
 
     @Override
     public void onTopStoryFetched(Story story) {
-
+        getView().addStoryToView(story);
     }
 }

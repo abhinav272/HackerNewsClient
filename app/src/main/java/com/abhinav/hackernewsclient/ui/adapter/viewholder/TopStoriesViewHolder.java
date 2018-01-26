@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.abhinav.hackernewsclient.R;
 import com.abhinav.hackernewsclient.data.network.pojo.Story;
 import com.abhinav.hackernewsclient.ui.adapter.TopStoriesAdapter;
+import com.abhinav.hackernewsclient.utils.Formatter;
 
 /**
  * Created by appinventiv on 26/1/18.
@@ -33,10 +34,9 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
                 listener.onStorySelected(story);
             }
         });
-
         tvStoryTitle.setText(story.getTitle());
         tvAuthor.setText(story.getBy());
         tvStoryScore.setText(String.format(itemView.getContext().getString(R.string.score), story.getScore().toString()));
-        tvPublishedAt.setText(story.getTime().toString());
+        tvPublishedAt.setText(Formatter.formatPublishDate(story.getTime()));
     }
 }

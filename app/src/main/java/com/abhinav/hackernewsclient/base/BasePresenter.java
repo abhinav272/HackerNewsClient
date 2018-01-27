@@ -47,7 +47,7 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
 
     @Override
     public void noNetworkError() {
-
+        getView().showNoNetworkError();
     }
 
     /**
@@ -60,5 +60,7 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
         if (failureResponse != null) {
             Log.e("OnErrorOccured", failureResponse.getErrorCode() + failureResponse.getMsg());
         }
+
+        getView().showSpecificError(failureResponse);
     }
 }

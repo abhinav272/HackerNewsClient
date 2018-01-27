@@ -89,6 +89,11 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView, 
     }
 
     @Override
+    public void setRefresh(boolean b) {
+        swipeRefreshLayout.setRefreshing(b);
+    }
+
+    @Override
     public void onStorySelected(Story story) {
         Log.e("onStorySelected: ", story.getTitle()+" " + story.getId());
         if (story.getKids() == null || story.getKids().size() == 0){

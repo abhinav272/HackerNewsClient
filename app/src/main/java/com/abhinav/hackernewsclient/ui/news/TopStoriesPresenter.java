@@ -24,6 +24,12 @@ public class TopStoriesPresenter extends BasePresenter<TopStoriesView> implement
     }
 
     @Override
+    public void noNetworkError() {
+        super.noNetworkError();
+        getView().setRefresh(false);
+    }
+
+    @Override
     protected void setModel() {
 
     }

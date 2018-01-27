@@ -10,4 +10,6 @@ import com.abhinav.hackernewsclient.data.network.pojo.Story;
 public interface TopStoriesView extends BaseView {
     void fetchTopStories();
     void addStoryToView(Story story);
+
+    void setRefresh(boolean b);
 }

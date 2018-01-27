@@ -4,8 +4,6 @@ import com.abhinav.hackernewsclient.base.BasePresenter;
 import com.abhinav.hackernewsclient.data.network.FailureResponse;
 import com.abhinav.hackernewsclient.data.network.pojo.Story;
 
-import java.util.List;
-
 /**
  * Created by appinventiv on 24/1/18.
  */
@@ -43,6 +41,7 @@ public class TopStoriesPresenter extends BasePresenter<TopStoriesView> implement
 
     @Override
     public void onTopStoryFetched(Story story) {
-        getView().addStoryToView(story);
+        if (!story.isDeleted())
+            getView().addStoryToView(story);
     }
 }

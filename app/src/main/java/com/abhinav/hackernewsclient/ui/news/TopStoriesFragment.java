@@ -3,6 +3,7 @@ package com.abhinav.hackernewsclient.ui.news;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,9 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.abhinav.hackernewsclient.R;
+import com.abhinav.hackernewsclient.base.BaseActivity;
 import com.abhinav.hackernewsclient.base.BaseFragment;
 import com.abhinav.hackernewsclient.data.network.pojo.Story;
 import com.abhinav.hackernewsclient.ui.adapter.TopStoriesAdapter;
+import com.abhinav.hackernewsclient.ui.comments.CommentsFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,6 +90,12 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView, 
 
     @Override
     public void onStorySelected(Story story) {
-        Log.e("onStorySelected: ", story.getTitle());
+        Log.e("onStorySelected: ", story.getTitle()+" " + story.getId());
+        if (story.getKids() == null || story.getKids().size() == 0){
+            showToastLong(getString(R.string.no_comments));
+            return;
+        }
+        ((BaseActivity) getActivity()).addFragmentWithBackstack(R.id.frame_container,
+                CommentsFragment.getInstance(story), CommentsFragment.class.getSimpleName());
     }
 }

@@ -8,4 +8,6 @@
     <color name="colorZircon">#D8E3E5</color>
     <color name="colorOxfordBlue">#242E31</color>
     <color name="colorDark">#312F39</color>
+    <color name="colorComment">#80A8A3</color>
+    <color name="colorCommentReply">#9CC760</color>
 </resources>

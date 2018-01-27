@@ -3,4 +3,5 @@
     <string name="something_went_wrong">Something went wrong</string>
     <string name="no_network_error">Internet Unavailable</string>
     <string name="score">Story Score : %s</string>
+    <string name="no_comments">No Comments for this Story</string>
 </resources>

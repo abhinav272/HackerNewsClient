@@ -1,8 +1,12 @@
 package com.abhinav.hackernewsclient.data.network.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +14,7 @@ import java.util.List;
  * Created by appinventiv on 23/1/18.
  */
 
-public class Story {
+public class Story implements Parcelable {
 
     @SerializedName("by")
     @Expose
@@ -39,6 +43,9 @@ public class Story {
     @SerializedName("url")
     @Expose
     private String url;
+    @SerializedName("deleted")
+    @Expose
+    private boolean deleted;
 
     public enum ItemType {
         @SerializedName("story")
@@ -127,4 +134,63 @@ public class Story {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.by);
+        dest.writeValue(this.descendants);
+        dest.writeValue(this.id);
+        dest.writeList(this.kids);
+        dest.writeValue(this.score);
+        dest.writeLong(this.time != null ? this.time.getTime() : -1);
+        dest.writeString(this.title);
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
+        dest.writeString(this.url);
+        dest.writeByte(this.deleted ? (byte) 1 : (byte) 0);
+    }
+
+    public Story() {
+    }
+
+    protected Story(Parcel in) {
+        this.by = in.readString();
+        this.descendants = (Long) in.readValue(Long.class.getClassLoader());
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.kids = new ArrayList<Long>();
+        in.readList(this.kids, Long.class.getClassLoader());
+        this.score = (Long) in.readValue(Long.class.getClassLoader());
+        long tmpTime = in.readLong();
+        this.time = tmpTime == -1 ? null : new Date(tmpTime);
+        this.title = in.readString();
+        int tmpType = in.readInt();
+        this.type = tmpType == -1 ? null : ItemType.values()[tmpType];
+        this.url = in.readString();
+        this.deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Story> CREATOR = new Creator<Story>() {
+        @Override
+        public Story createFromParcel(Parcel source) {
+            return new Story(source);
+        }
+
+        @Override
+        public Story[] newArray(int size) {
+            return new Story[size];
+        }
+    };
 }

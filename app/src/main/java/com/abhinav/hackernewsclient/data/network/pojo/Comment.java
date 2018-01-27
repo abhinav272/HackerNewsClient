@@ -3,6 +3,7 @@ package com.abhinav.hackernewsclient.data.network.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,44 @@ public class Comment {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("deleted")
+    @Expose
+    private boolean deleted;
+
+    private int depthLevel = 0;
+    private ArrayList<Comment> kidComments;
+
+    public int getDepthLevel() {
+        return depthLevel;
+    }
+
+    public void setDepthLevel(int depthLevel) {
+        this.depthLevel = depthLevel;
+    }
+
+    public ArrayList<Comment> getKidComments() {
+        return kidComments;
+    }
+
+    public void setKidComments(Comment comment) {
+        if (kidComments == null) {
+            kidComments = new ArrayList<>();
+        }
+        kidComments.add(comment);
+        setKidComments(kidComments);
+    }
+
+    public void setKidComments(ArrayList<Comment> kidComments) {
+        this.kidComments = kidComments;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public String getBy() {
         return by;

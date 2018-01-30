@@ -83,7 +83,7 @@ public class CommentsFragment extends BaseFragment implements CommentsView {
 
     @Override
     public void showComment(Comment commentsLevel1) {
-        Log.e("showComment: ", commentsLevel1.getId() + " " + commentsLevel1.getText());
+//        Log.e("showComment: ", commentsLevel1.getId() + " " + commentsLevel1.getText());
         commentsAdapter.addCommentItem(commentsLevel1);
     }
 
@@ -94,7 +94,7 @@ public class CommentsFragment extends BaseFragment implements CommentsView {
 
     @Override
     public void showCommentsReply(Comment commentsLevel2) {
-        Log.e("showCommentsReply: ", commentsLevel2.getParent() + " " + commentsLevel2.getText());
+//        Log.e("showCommentsReply: ", commentsLevel2.getParent() + " " + commentsLevel2.getText());
         commentsAdapter.updateCommentReplies(commentsLevel2);
     }
 

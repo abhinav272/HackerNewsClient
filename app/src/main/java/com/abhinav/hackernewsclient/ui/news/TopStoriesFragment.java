@@ -39,12 +39,21 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView, 
     private TopStoriesPresenter presenter;
     private TopStoriesAdapter topStoriesAdapter;
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e("onCreate: ", "called");
+        setRetainInstance(true);
+        presenter = new TopStoriesPresenter(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_stories, container, false);
         unbinder = ButterKnife.bind(this, view);
-        presenter = new TopStoriesPresenter(this);
+        presenter.attachView(this);
         return view;
     }
 
@@ -56,7 +65,7 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView, 
             @Override
             public void onRefresh() {
                 topStoriesAdapter.removeAllStories();
-                fetchTopStories();
+                presenter.onRefetchTopStories();
             }
         });
         fetchTopStories();
@@ -74,6 +83,13 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView, 
         super.onDestroyView();
         presenter.detachView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("onDestroy: ", "called");
+        presenter.destroy();
     }
 
     @Override
@@ -102,5 +118,10 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesView, 
         }
         ((BaseActivity) getActivity()).addFragmentWithBackstack(R.id.frame_container,
                 CommentsFragment.getInstance(story), CommentsFragment.class.getSimpleName());
+    }
+
+    @Override
+    public void populatePreLoadedStories(List<Story> stories) {
+        topStoriesAdapter.addPreLoadedStories(stories);
     }
 }

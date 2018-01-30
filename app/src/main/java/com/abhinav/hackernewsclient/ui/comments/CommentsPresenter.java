@@ -4,6 +4,7 @@ import com.abhinav.hackernewsclient.base.BasePresenter;
 import com.abhinav.hackernewsclient.data.network.pojo.Comment;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -18,7 +19,6 @@ public class CommentsPresenter extends BasePresenter<CommentsView> implements Co
 
     public CommentsPresenter(CommentsView view) {
         super(view);
-        model = new CommentsModel(this);
     }
 
     @Override
@@ -39,8 +39,13 @@ public class CommentsPresenter extends BasePresenter<CommentsView> implements Co
     }
 
     @Override
-    protected void setModel() {
+    public void onPreLoadedComments(ArrayList<Comment> comments) {
+        getView().showPreLoadedComments(comments);
+    }
 
+    @Override
+    protected void setModel() {
+        model = new CommentsModel(this);
     }
 
     @Override

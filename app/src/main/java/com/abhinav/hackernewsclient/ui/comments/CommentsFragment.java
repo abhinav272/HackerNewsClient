@@ -16,6 +16,8 @@ import com.abhinav.hackernewsclient.data.network.pojo.Comment;
 import com.abhinav.hackernewsclient.data.network.pojo.Story;
 import com.abhinav.hackernewsclient.ui.adapter.CommentsAdapter;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -44,13 +46,20 @@ public class CommentsFragment extends BaseFragment implements CommentsView {
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = new CommentsPresenter(this);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comment, container, false);
         initArgs();
         unbinder = ButterKnife.bind(this, view);
-        presenter = new CommentsPresenter(this);
+        presenter.attachView(this);
         return view;
     }
 
@@ -79,6 +88,11 @@ public class CommentsFragment extends BaseFragment implements CommentsView {
     }
 
     @Override
+    public void showPreLoadedComments(ArrayList<Comment> comments) {
+        commentsAdapter.addPreLoadedComments(comments);
+    }
+
+    @Override
     public void showCommentsReply(Comment commentsLevel2) {
         Log.e("showCommentsReply: ", commentsLevel2.getParent() + " " + commentsLevel2.getText());
         commentsAdapter.updateCommentReplies(commentsLevel2);
@@ -89,5 +103,11 @@ public class CommentsFragment extends BaseFragment implements CommentsView {
         super.onDestroyView();
         presenter.detachView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.destroy();
     }
 }

@@ -10,6 +10,7 @@ import com.abhinav.hackernewsclient.data.network.pojo.Story;
 import com.abhinav.hackernewsclient.ui.adapter.viewholder.TopStoriesViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by appinventiv on 26/1/18.
@@ -56,6 +57,12 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
 
     public void removeAllStories() {
         stories.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addPreLoadedStories(List<Story> stories) {
+        this.stories.clear();
+        this.stories.addAll(stories);
         notifyDataSetChanged();
     }
 

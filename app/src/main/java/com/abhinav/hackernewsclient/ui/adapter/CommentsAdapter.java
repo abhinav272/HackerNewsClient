@@ -10,7 +10,6 @@ import com.abhinav.hackernewsclient.data.network.pojo.Comment;
 import com.abhinav.hackernewsclient.ui.adapter.viewholder.CommentsViewHolder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by appinventiv on 27/1/18.
@@ -18,11 +17,11 @@ import java.util.HashMap;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsViewHolder> {
 
-    private HashMap<Long, Comment> comments;
+    private ArrayList<Comment> comments;
 
-    public CommentsAdapter(HashMap<Long, Comment> comments) {
+    public CommentsAdapter(ArrayList<Comment> comments) {
         if (comments == null)
-            comments = new HashMap<>();
+            comments = new ArrayList<>();
         this.comments = comments;
     }
 
@@ -44,28 +43,33 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsViewHolder> {
     }
 
     private Comment getItem(int position) {
-        ArrayList<Comment> allComments = new ArrayList<>(comments.values());
-        return allComments.get(position);
+        return comments.get(position);
     }
 
     private int getItemPosition(Comment comment) {
-        ArrayList<Comment> allComments = new ArrayList<>(comments.values());
-        return allComments.indexOf(comment);
+        return comments.indexOf(comment);
     }
 
     public void addCommentItem(Comment comment) {
-        comments.put(comment.getId(), comment);
+        comments.add(comment);
         notifyItemInserted(getItemPosition(comment));
     }
 
     public void updateCommentReplies(Comment updatedComment) {
-        Comment c = comments.get(updatedComment.getParent());
-        c.setKidComments(updatedComment);
-        notifyItemChanged(getItemPosition(c));
+        int pos = getItemPosition(updatedComment);
+        comments.remove(pos);
+        comments.add(pos, updatedComment);
+        notifyItemChanged(pos);
     }
 
     public void removeAllComments() {
         comments.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addPreLoadedComments(ArrayList<Comment> comments) {
+        this.comments.clear();
+        this.comments.addAll(comments);
         notifyDataSetChanged();
     }
 }

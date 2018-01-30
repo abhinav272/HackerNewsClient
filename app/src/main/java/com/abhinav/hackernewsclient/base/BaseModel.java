@@ -54,13 +54,17 @@ public abstract class BaseModel<T> implements Observer<T> {
 
     @Override
     public void onComplete() {
-        disposable.clear();
+        clearDisposable();
     }
 
     private void flushDisposable() {
         if (!disposable.isDisposed()) {
             disposable.dispose();
         }
+    }
+
+    public void clearDisposable() {
+        disposable.clear();
     }
 
     private void onSpecificErrorOccurred(Throwable e) {

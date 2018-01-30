@@ -16,13 +16,12 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
     private SoftReference<T> view;
 
     public BasePresenter(T view){
-        this.view = new SoftReference<>(view);
+        attachView(view);
         setModel();
     }
 
     public void attachView(T view){
         this.view = new SoftReference<T>(view);
-        setModel();
     }
 
     public T getView() {
@@ -31,7 +30,7 @@ public abstract class BasePresenter<T extends BaseView> implements BaseModelList
 
     public void detachView() {
         view = null;
-        destroy();
+//        destroy();
     }
 
     protected abstract void setModel();

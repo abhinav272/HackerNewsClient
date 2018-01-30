@@ -49,9 +49,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     public void addFragment(int layoutResId, BaseFragment fragment, String tag) {
-        getSupportFragmentManager().beginTransaction()
-                .add(layoutResId, fragment, tag)
-                .commit();
+        if (getSupportFragmentManager().findFragmentByTag(tag) == null)
+            getSupportFragmentManager().beginTransaction()
+                    .add(layoutResId, fragment, tag)
+                    .commit();
     }
 
     public void addFragmentWithBackstack(int layoutResId, BaseFragment fragment, String tag) {

@@ -92,7 +92,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public void showSpecificError(FailureResponse failureResponse) {
         String message = (failureResponse != null) ? failureResponse.getMsg() : getString(R.string.something_went_wrong);
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        showToastLong(message);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by appinventiv on 24/1/18.
  */
 
-class TopStoriesModel extends BaseModel<Story> {
+public class TopStoriesModel extends BaseModel<Story> {
 
     private List<Story> stories;
 
@@ -23,11 +23,11 @@ class TopStoriesModel extends BaseModel<Story> {
         this.stories = stories;
     }
 
-    TopStoriesModel(TopStoriesModelListener listener) {
+    public TopStoriesModel(TopStoriesModelListener listener) {
         super(listener);
     }
 
-    void fetchTopStories() {
+    public void fetchTopStories() {
         if (stories == null || stories.size() == 0)
             DataManager.getInstance().fetchTopStories()
                         .subscribe(this);

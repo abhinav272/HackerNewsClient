@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TopStoriesPresenter extends BasePresenter<TopStoriesView> implements TopStoriesModelListener {
 
-    private TopStoriesModel model;
+    protected TopStoriesModel model;
 
     public TopStoriesPresenter(TopStoriesView view) {
         super(view);
@@ -31,18 +31,18 @@ public class TopStoriesPresenter extends BasePresenter<TopStoriesView> implement
     }
 
     @Override
-    protected void setModel() {
+    public void setModel() {
         model = new TopStoriesModel(this);
     }
 
     @Override
-    protected void destroy() {
+    public void destroy() {
         model.detachListener();
         model = null;
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
         model.fetchTopStories();
     }
 

@@ -15,7 +15,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -29,15 +28,12 @@ public class TopStoriesModelTest {
 
     @Mock
     private TopStoriesModelListener listener;
-    @Mock
-    private DataManager manager;
 
     private TopStoriesModel model;
 
     @Before
     public void setUp() throws Exception {
         model = new TopStoriesModel(listener);
-        manager = DataManager.getInstance();
     }
 
     @Test

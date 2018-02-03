@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CommentsModel extends BaseModel<Comment> {
 
-    private HashMap<Long, Comment> commentHashMap;
+    public HashMap<Long, Comment> commentHashMap;
 
     public CommentsModel(BaseModelListener listener) {
         super(listener);

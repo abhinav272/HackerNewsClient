@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by appinventiv on 26/1/18.
  */
 
-interface CommentsModelListener extends BaseModelListener {
+public interface CommentsModelListener extends BaseModelListener {
     void onCommentsLoaded(Comment comment);
     void onCommentReplyLoaded(Comment comment);
 

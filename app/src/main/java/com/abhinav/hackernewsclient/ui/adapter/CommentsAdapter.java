@@ -42,7 +42,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsViewHolder> {
         return comments.size();
     }
 
-    private Comment getItem(int position) {
+    public Comment getItem(int position) {
         return comments.get(position);
     }
 

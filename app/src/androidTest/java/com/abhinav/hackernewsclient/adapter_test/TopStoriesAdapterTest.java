@@ -1,4 +1,4 @@
-package com.abhinav.hackernewsclient;
+package com.abhinav.hackernewsclient.adapter_test;
 
 import android.test.AndroidTestCase;
 

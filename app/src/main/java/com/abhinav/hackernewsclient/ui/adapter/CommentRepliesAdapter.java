@@ -43,14 +43,14 @@ public class CommentRepliesAdapter extends RecyclerView.Adapter<CommentRepliesVi
         return kidComments.size();
     }
 
-    private Comment getItem(int position) {
+    public Comment getItem(int position) {
         return kidComments.get(position);
     }
 
-    public void addReplyComment(Comment comment) {
-        kidComments.add(comment);
-        notifyItemChanged(kidComments.size() - 1);
-    }
+//    public void addReplyComment(Comment comment) {
+//        kidComments.add(comment);
+//        notifyItemChanged(kidComments.size() - 1);
+//    }
 
     public void updateDataSet(List<Comment> kidComments) {
         this.kidComments.clear();

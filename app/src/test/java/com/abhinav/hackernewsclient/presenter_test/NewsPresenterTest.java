@@ -26,9 +26,6 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class NewsPresenterTest {
 
-    @ClassRule
-    public static final RxSchedulerRule schedulers = new RxSchedulerRule();
-
     @Mock
     private TopStoriesView view;
     @Mock

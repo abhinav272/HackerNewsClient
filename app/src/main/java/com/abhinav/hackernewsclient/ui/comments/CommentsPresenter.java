@@ -60,7 +60,5 @@ public class CommentsPresenter extends BasePresenter<CommentsView> implements Co
     }
 
     @Override
-    protected void initView() {
-
-    }
+    protected void initView() {}
 }

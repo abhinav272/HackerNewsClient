@@ -10,7 +10,13 @@ import java.util.Locale;
 
 public class Formatter {
 
+    /*
+    * Thu Feb 01 17:54:35 GMT+05:30 2018
+    * formatted as Thu, Feb 1, '18
+    * */
     public static String formatPublishDate(Date date) {
-        return new SimpleDateFormat("EEE, MMM d, ''yy", Locale.getDefault()).format(date);
+        if (date != null) {
+            return new SimpleDateFormat("EEE, MMM d, ''yy", Locale.getDefault()).format(date);
+        } else return null;
     }
 }

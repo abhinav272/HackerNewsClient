@@ -14,8 +14,8 @@ import java.util.Queue;
 
 public class CommentsPresenter extends BasePresenter<CommentsView> implements CommentsModelListener {
 
-    private CommentsModel model;
-    private Queue<List<Long>> commentReplies = new ArrayDeque<>();
+    protected CommentsModel model;
+    public Queue<List<Long>> commentReplies = new ArrayDeque<>();
 
     public CommentsPresenter(CommentsView view) {
         super(view);
@@ -49,13 +49,13 @@ public class CommentsPresenter extends BasePresenter<CommentsView> implements Co
     }
 
     @Override
-    protected void destroy() {
+    public void destroy() {
         model.detachListener();
         commentReplies = null;
         model = null;
     }
 
-    protected void initFetching(List<Long> commentIds) {
+    public void initFetching(List<Long> commentIds) {
         model.fetchStoryComments(commentIds);
     }
 

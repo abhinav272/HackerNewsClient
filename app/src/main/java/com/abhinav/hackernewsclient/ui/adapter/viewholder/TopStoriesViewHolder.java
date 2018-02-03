@@ -31,7 +31,9 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onStorySelected(story);
+                if (listener != null) {
+                    listener.onStorySelected(story);
+                }
             }
         });
         tvStoryTitle.setText(story.getTitle());

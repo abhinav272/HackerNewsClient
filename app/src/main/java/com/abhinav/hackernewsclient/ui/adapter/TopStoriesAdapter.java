@@ -41,7 +41,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
         holder.bindData(getItem(position));
     }
 
-    private Story getItem(int position) {
+    public Story getItem(int position) {
         return stories.get(position);
     }
 
